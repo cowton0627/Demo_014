@@ -14,18 +14,18 @@ struct ContentView: View {
     @State private var isShowPhotoLibrary = false
     @State private var image = UIImage()
 
+
     var body: some View {
         
         VStack {
-//            Text("Hello, world!")
-//                .padding()
+
             Image(uiImage: self.image)
                 .resizable()
                 .scaledToFit()
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .edgesIgnoringSafeArea(.all)
+//                .frame(minWidth: 0, maxWidth: .infinity)
+//                .edgesIgnoringSafeArea(.all)
+                .padding()
 
-            
             Button(action: {
                 self.isShowPhotoLibrary = true
             }) {
@@ -33,20 +33,24 @@ struct ContentView: View {
                     Image(systemName: "photo")
                         .font(.system(size: 20))
                     
-                    Text("Photo picker")
+                    Text("Photo Picker")
                         .font(.headline)
-                    
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
+                .frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 0,
+                       maxHeight: 50)
                 .background(Color.blue)
-                .foregroundColor(.primary)
+                .foregroundColor(.orange)
                 .cornerRadius(20)
                 .padding(.horizontal)
             }
         }
         .sheet(isPresented: $isShowPhotoLibrary) {
-            ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
             
+            ImagePicker(selectedImage: self.$image)
+//            ImagePicker(selectedImage: self.$image,
+//                        sourceType: .camera)
         }
     }
 }
